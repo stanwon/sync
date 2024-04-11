@@ -1,3 +1,3 @@
-all: main.c
-	@gcc main.c -o main
+all: main.c queue.c
+	@gcc main.c queue.c -o main
 	@./main

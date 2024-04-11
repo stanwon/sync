@@ -6,6 +6,7 @@
 #include <sys/select.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include "common.h"
 
 #define PORT 50005
 
