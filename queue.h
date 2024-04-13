@@ -1,5 +1,5 @@
-#ifndef __COMMON_H_
-#define __COMMON_H_
+#ifndef __QUEUE_H_
+#define __QUEUE_H_
 
 #include <stdbool.h>
 
@@ -9,7 +9,11 @@
 typedef struct {
   unsigned char dst_addr[MAC_ADDR_LEN];
   unsigned char src_addr[MAC_ADDR_LEN];
-  unsigned short type;
+  unsigned short frame_type;
+  unsigned short payload_len;
+  unsigned int msg_code;
+  unsigned int pkg_num;
+  unsigned char payload[4];
 } ST_PHY_PKG;
 
 typedef struct{
