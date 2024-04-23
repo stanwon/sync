@@ -1,5 +1,9 @@
 #include "common.h"
+#include "queue.h"
 #include "recv.h"
+#include <stdio.h>
+#include <string.h>
+#include <unistd.h>
 
 int s;
 
@@ -12,8 +16,21 @@ void init() {
 }
 
 int main() {
+  char *buf = NULL;
+  int is_received = false;
   init();
   while (1) {
+    sleep(2);
+    is_received = out_que((ST_PHY_PKG **)&buf);
+
+    if (!is_received) {
+      continue;
+    }
+
+    if (NULL != buf) {
+      printf("%s\n", buf);
+      free(buf);
+    }
   }
   close(s);
   exit(0);

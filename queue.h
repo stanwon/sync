@@ -4,7 +4,7 @@
 #include <stdbool.h>
 
 #define MAC_ADDR_LEN 6
-#define QUE_NUM 1023
+#define QUE_NUM 1024
 
 typedef struct {
   unsigned char dst_addr[MAC_ADDR_LEN];

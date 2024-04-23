@@ -11,7 +11,7 @@ void init_que() {
   g_phy_pkg_que.out = 0;
   g_phy_pkg_que.in = 0;
   for (loop = 0; loop < QUE_NUM; loop++) {
-    g_phy_pkg_que.phy_pkg[0] = NULL;
+    g_phy_pkg_que.phy_pkg[loop] = NULL;
   }
 }
 

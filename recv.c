@@ -1,5 +1,6 @@
-#include "common.h"
 #include "recv.h"
+#include "common.h"
+#include "queue.h"
 
 void *recv_task() {
   int rc;
@@ -11,7 +12,7 @@ void *recv_task() {
   struct sockaddr_in client_addr;
   int client_addr_len;
   int recv_len;
-  char recv_buf[2048];
+  char *p_recv_buf = NULL;
 
   // create socket
   s = socket(AF_INET, SOCK_DGRAM, 0);
@@ -45,14 +46,24 @@ void *recv_task() {
     }
     client_addr_len = sizeof(client_addr);
 
-    if (0 > (recv_len =
-                 recvfrom(s, recv_buf, 2048, 0, (struct sockaddr *)&client_addr,
-                          (socklen_t *)&client_addr_len))) {
-      printf("Fail to receive data from socket.\n");
-      exit(-1);
+    if (NULL == p_recv_buf) {
+      if (NULL == (p_recv_buf = malloc(RECV_BUF_LEN))) {
+        continue;
+      }
     }
 
-    printf("%s\n", recv_buf);
+    memset(p_recv_buf, 0, RECV_BUF_LEN);
+
+    if (0 > (recv_len = recvfrom(s, p_recv_buf, RECV_BUF_LEN, 0,
+                                 (struct sockaddr *)&client_addr,
+                                 (socklen_t *)&client_addr_len))) {
+      printf("Fail to receive data from socket.\n");
+      continue;
+    }
+
+    in_que((ST_PHY_PKG *)p_recv_buf);
+
+    p_recv_buf = NULL;
   }
 
   return NULL;
