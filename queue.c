@@ -1,7 +1,5 @@
 #include "queue.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "common.h"
 
 ST_PHY_PKG_QUE g_phy_pkg_que;
 

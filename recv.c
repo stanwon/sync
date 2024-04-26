@@ -18,7 +18,7 @@ void *recv_task() {
   s = socket(AF_INET, SOCK_DGRAM, 0);
   listen_addr.sin_family = AF_INET;
   listen_addr.sin_addr.s_addr = htonl(0);
-  listen_addr.sin_port = htons(PORT);
+  listen_addr.sin_port = htons(RECV_PORT);
   // bind address
   if (0 > bind(s, (struct sockaddr *)&listen_addr, sizeof(listen_addr))) {
     printf("Fail to bind.\n");

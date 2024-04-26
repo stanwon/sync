@@ -1,9 +1,6 @@
 #include "common.h"
 #include "queue.h"
 #include "recv.h"
-#include <stdio.h>
-#include <string.h>
-#include <unistd.h>
 
 int s;
 

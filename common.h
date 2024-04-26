@@ -13,7 +13,7 @@
 #include <unistd.h>
 
 #define BUF_LEN 2048
-#define PORT 50005
+#define RECV_PORT 50005
 
 extern int s;
 
